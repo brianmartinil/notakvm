@@ -19,11 +19,11 @@ Both computers are connected to different inputs on the monitor.  This script ru
 
 ### Software setup
 
+* Clone this repo: `git clone git@github.com:brianmartinil/notakvm.git`
+* Install with pip3: `pip3 install ./notakvm`
 * Install the `psutil` and `wmi` Python packages
-* Put this script into a directory somewhere
-* Download [ControlMyMonitor](https://www.nirsoft.net/utils/control_my_monitor.html) and put the exe in the same directory as the script
-* At the top of the script, change `THIS_COMPUTER_INPUT_ID` and `OTHER_COMPUTER_INPUT_ID` as appropriate for your monitor.  These are the values that tell your monitor what input to use.  They aren't always logical.  My monitor, for example, uses 15 for DisplayPort and 17 for HDMI1.  You can check these values with ControlMyMonitor or ScreenBright (look for VCP Code 60 "Input Select").
-* Run `python notakvm.py launch` to have the script launch itself in the background.  Leave off the `launch` parameter to keep it in the foreground (if you want to see debugging output, for example).
+* TODO: this needs to be moved to a config fie.  At the top of the script, change `THIS_COMPUTER_INPUT_ID` and `OTHER_COMPUTER_INPUT_ID` as appropriate for your monitor.  These are the values that tell your monitor what input to use.  They aren't always logical.  My monitor, for example, uses 15 for DisplayPort and 17 for HDMI1.  You can check these values with ControlMyMonitor or ScreenBright (look for VCP Code 60 "Input Select").
+* Run `notakvm launch` to have the script launch itself in the background.  Leave off the `launch` parameter to keep it in the foreground (if you want to see debugging output, for example).
 * Optionally, use Task Scheduler to automatically launch the script when you log on.
 
 The script should only be installed on one computer.
