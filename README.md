@@ -21,14 +21,18 @@ Both computers are connected to different inputs on the monitor.  This script ru
 
 * Clone this repo: `git clone git@github.com:brianmartinil/notakvm.git`
 * Install with pip3: `pip3 install ./notakvm`
-* Install the `psutil` and `wmi` Python packages
-* TODO: this needs to be moved to a config fie.  At the top of the script, change `THIS_COMPUTER_INPUT_ID` and `OTHER_COMPUTER_INPUT_ID` as appropriate for your monitor.  These are the values that tell your monitor what input to use.  They aren't always logical.  My monitor, for example, uses 15 for DisplayPort and 17 for HDMI1.  You can check these values with ControlMyMonitor or ScreenBright (look for VCP Code 60 "Input Select").
-* Run `notakvm launch` to have the script launch itself in the background.  Leave off the `launch` parameter to keep it in the foreground (if you want to see debugging output, for example).
+* Run `notakvm --background` to have the script launch itself in the background.
+* Use the `--this-computer-input` parameter to specify the DDC/CI input for this computer (you can get the value using ControlMyMonitor or ScreenBright).
+* Use the `--other-computer-input` parameter to specify the DDC/CI input for the other computer.
 * Optionally, use Task Scheduler to automatically launch the script when you log on.
 
 The script should only be installed on one computer.
 
 Once the script is up and running, the active monitor should follow the USB switch.
+
+## TODOs
+
+* The code for detecting and killing previously running instances is unnecessarily complicated and not super reliable.  Clean it up or delete it.
 
 ## Limitations
 
@@ -41,5 +45,3 @@ Once the script is up and running, the active monitor should follow the USB swit
 * The script will use the connection of any USB keyboard as a signal to switch to itself, and a disconnect of any USB keyboard to switch away.  If you have multiple peripherals that identify themselves as keyboards this might cause issues.  You may be able to solve it by using more specific WMI query strings.
 
 * I turned off the device-added and device-removed Windows system sounds because it was annoying.
-
-* The script is Windows only because the mechanisms for detecting USB devices and sending DDC/CI commands are completely different on Linux and Mac, and I don't have either of those computers handy to test.  Patches accepted.

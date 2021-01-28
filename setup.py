@@ -30,7 +30,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "notakvm=notakvm.__main__:setuptools_launch",
+            "notakvm=notakvm.__main__:main",
         ],
     },
 )
