@@ -22,31 +22,6 @@ def switch_input(input):
         os.system("%s\\ControlMyMonitor.exe /SetValue Primary 60 %s" % (script_dir, input))
         current_input = input
 
-# See if a previous instance of the script is running and kill it
-def kill_previous_instance():
-    for proc in psutil.process_iter():
-        if is_prev_instance(proc):
-            print("Found a running version with PID %s, killing." % proc.pid)
-
-            try:
-                proc.kill()
-            except:
-                print("Kill failed, you might end up with multiple instances running.")
-
-def is_prev_instance(proc):
-    try:
-        cmd_line = proc.cmdline()
-    except psutil.AccessDenied:
-        # We don't own this process, so it can't be a previous instance
-        return False
-
-    # Don't find ourselves
-    if proc.pid == os.getpid() or len(cmd_line) < 2:
-        return False
-
-    if os.path.realpath(sys.executable) == os.path.realpath(cmd_line[0]) and os.path.realpath(__file__) == os.path.realpath(cmd_line[1]):
-       return True
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--background', action='store_true')
@@ -61,8 +36,6 @@ def main():
     #  the "--background" parameter, and use popen to spawn it in the background.  This will be our 
     #  long-running background process.
     if args.background:
-        kill_previous_instance()
-
         # launch ourselves without the "launch" parameter
         # we always launch with the executable directly and __file__ so that we can find it
         # in the process list

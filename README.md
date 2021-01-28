@@ -30,10 +30,6 @@ The script should only be installed on one computer.
 
 Once the script is up and running, the active monitor should follow the USB switch.
 
-## TODOs
-
-* The code for detecting and killing previously running instances is unnecessarily complicated and not super reliable.  Clean it up or delete it.
-
 ## Limitations
 
 * On my monitor, switching between sources takes about 6 seconds.  This is on par with the cheap ($100) 4K / 60hz DisplayPort KVM I tried, but is slower than higher-end KVMs.
